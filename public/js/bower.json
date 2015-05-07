@@ -1,0 +1,18 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "authors": [
+    "Tan Nguyen <laoshanlung@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.10.2"
+  }
+}

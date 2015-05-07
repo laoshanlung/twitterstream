@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+		<div class="media">
+		  <div class="media-left">
+		    <a href="#">
+		      <img width="48" height="48" class="media-object" ng-src="{{ tweet.user.profile_image_url }}">
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">{{ tweet.user.name }}</h4>
+		    {{ tweet.text }}
+		    <div>
+		    	<i ng-bind="fromNow(tweet.created_at)"></i>
+		    </div>
+		    <div>
+		    	<button ng-click="onClickStar({tweet: tweet})" ng-hide="tweet.is_starred" class="btn btn-primary btn-xs">
+		    		Star
+		    	</button>
+		    	<button ng-click="onClickUnstar({tweet: tweet})" ng-show="tweet.is_starred" class="btn btn-primary btn-xs">
+		    		Unstar
+		    	</button>
+		    </div>
+		  </div>
+		</div>
+    
+  </div>
+</div>

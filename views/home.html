@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div ng-cloak ng-controller="MainController as controller">
+	<div infiniteload threshold="1000" on-load="controller.onLoadMore()">
+		<singletweet ng-repeat="(index, tweet) in controller.tweets" tweet="tweet" on-click-star="controller.onClickStar(tweet)" on-click-unstar="controller.onClickUnstar(tweet)">
+		</singletweet>
+	</div>
+</div>
+{% endblock %}
