@@ -29,7 +29,6 @@ Schema.statics.listBySession = function(sessionId, options) {
   select['session_id'] = sessionId;
 
   options = options || {};
-  var select = {};
   if (options.lt) {
     select['created_at'] = {$lt: options.lt};
   }
