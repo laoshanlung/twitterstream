@@ -3,9 +3,26 @@ define([
   , 'apps/home'
 ], function(_, app){
 
-  var Controller = function($window, $rootScope, Tweets) {
+  var Controller = function($interval, $window, $rootScope, $scope, Tweets) {
     var self = this;
     this.tweets = [];
+
+    var polling = $interval(function(){
+      var tweet = _.first(self.tweets)
+      if (!tweet) {
+        return;
+      }
+
+      Tweets.list({
+        gte: tweet.created_at
+      }).$promise.then(function(tweets){
+        self.tweets = _.union(tweets.data, self.tweets);
+      });
+    }, 20000);
+
+    $scope.$on('$destroy', function(){
+      $interval.cancel(polling);
+    });
 
     var updateTweets = function(tweets) {
       this.tweets = _.union(this.tweets, tweets);
@@ -40,7 +57,7 @@ define([
       var tweet = _.last(self.tweets);
       if (tweet) {
         Tweets.list({
-          lte: tweet.fetched_at 
+          lte: tweet.created_at 
         }).$promise.then(function(tweets){
           updateTweets(tweets.data);
         });
@@ -48,5 +65,5 @@ define([
     }
   }
 
-  app.controller('MainController', ['$window', '$rootScope', 'Tweets', Controller]);
+  app.controller('MainController', ['$interval', '$window', '$rootScope', '$scope', 'Tweets', Controller]);
 });

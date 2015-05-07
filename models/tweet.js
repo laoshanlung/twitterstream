@@ -66,14 +66,14 @@ Schema.statics.list = function(options) {
   options = options || {};
   var select = {};
   if (options.lte) {
-    select['fetched_at'] = {$lte: options.lte};
+    select['created_at'] = {$lte: options.lte};
   }
 
   if (options.gte) {
-    select['fetched_at'] = {$gte: options.gte};
+    select['created_at'] = {$gte: options.gte};
   }
 
-  return this.find(select).sort('-fetched_at').limit(20);
+  return this.find(select).sort('-created_at').limit(20);
 }
 
 Schema.statics.listStarredBySession = function(sessionId, options) {
