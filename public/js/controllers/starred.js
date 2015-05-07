@@ -35,7 +35,7 @@ define([
       var tweet = _.last(self.tweets);
       if (tweet) {
         Tweets.listStarred({
-          lte: tweet.starred_at 
+          lt: tweet.starred_at 
         }).$promise.then(function(tweets){
           updateTweets(tweets.data);
         });

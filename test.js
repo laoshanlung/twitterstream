@@ -64,7 +64,7 @@ describe('Unit Test', function(){
       it('returns list of current tweets later than date', function(done){
         var date = moment().subtract(1, 'd').toDate();
 
-        Tweet.list({lte: date}).then(function(tweets){
+        Tweet.list({lt: date}).then(function(tweets){
           tweets.length.should.be.equal(0);
         }).done(done, done)
       });
@@ -177,7 +177,7 @@ describe('Unit Test', function(){
       it('lists all tweets starred by a session later than a specific date', function(done){
         var date = moment().subtract(1, 'd').toDate();
 
-        Star.listBySession(this.session._id, {lte: date}).then(function(stars){
+        Star.listBySession(this.session._id, {lt: date}).then(function(stars){
           stars.length.should.be.equal(0);
         }).done(done, done);
 

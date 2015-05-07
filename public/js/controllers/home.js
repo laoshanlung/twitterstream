@@ -14,7 +14,7 @@ define([
       }
 
       Tweets.list({
-        gte: tweet.created_at
+        gt: tweet.created_at
       }).$promise.then(function(tweets){
         self.tweets = _.union(tweets.data, self.tweets);
       });
@@ -57,7 +57,7 @@ define([
       var tweet = _.last(self.tweets);
       if (tweet) {
         Tweets.list({
-          lte: tweet.created_at 
+          lt: tweet.created_at 
         }).$promise.then(function(tweets){
           updateTweets(tweets.data);
         });

@@ -65,12 +65,12 @@ Schema.methods.unstarredBySession = function(sessionId) {
 Schema.statics.list = function(options) {
   options = options || {};
   var select = {};
-  if (options.lte) {
-    select['created_at'] = {$lte: options.lte};
+  if (options.lt) {
+    select['created_at'] = {$lt: options.lt};
   }
 
-  if (options.gte) {
-    select['created_at'] = {$gte: options.gte};
+  if (options.gt) {
+    select['created_at'] = {$gt: options.gt};
   }
 
   return this.find(select).sort('-created_at').limit(20);

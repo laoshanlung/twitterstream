@@ -93,17 +93,17 @@ app.get('/starred', function(req, res){
 });
 
 var processDateQuery = function(req, res, next) {
-  var lte = req.query.lte
-    , gte = req.query.gte
+  var lt = req.query.lt
+    , gt = req.query.gt
 
   req.dateQuery = {};
 
-  if (lte) {
-    req.dateQuery.lte = moment(lte).toDate();
+  if (lt) {
+    req.dateQuery.lt = moment(lt).toDate();
   }
 
-  if (gte) {
-    req.dateQuery.lte = moment(lte).toDate();
+  if (gt) {
+    req.dateQuery.gt = moment(gt).toDate();
   }
 
   next();
